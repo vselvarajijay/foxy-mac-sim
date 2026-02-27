@@ -1,0 +1,38 @@
+{
+  "name": "Foxy Sim",
+  "config": {
+    "layout": {
+      "direction": "row",
+      "first": {
+        "direction": "column",
+        "first": "3D!1",
+        "second": {
+          "direction": "row",
+          "first": "RawMessages!1",
+          "second": "Plot!1"
+        }
+      },
+      "second": "Plot!2"
+    },
+    "configById": {
+      "3D!1": {
+        "followTf": "base_link",
+        "scene": {},
+        "transforms": {}
+      },
+      "RawMessages!1": {
+        "topicPath": "/cmd_vel"
+      },
+      "Plot!1": {
+        "paths": [
+          { "value": "/odom.pose.pose.position.x", "enabled": true }
+        ]
+      },
+      "Plot!2": {
+        "paths": [
+          { "value": "/scan", "enabled": true }
+        ]
+      }
+    }
+  }
+}

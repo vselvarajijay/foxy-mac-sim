@@ -1,0 +1,17 @@
+services:
+  foxy-sim:
+    build: .
+    image: foxy-mac-sim:local
+    container_name: foxy-sim
+    ports:
+      - "9090:9090"   # rosbridge_websocket (Foxglove)
+      - "8080:80"     # noVNC (Gazebo desktop in browser)
+    security_opt:
+      - seccomp=unconfined
+    shm_size: 512m
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import socket; s=socket.socket(); s.settimeout(2); s.connect(('127.0.0.1', 9090)); s.close()"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
