@@ -1,38 +1,96 @@
 {
-  "name": "Foxy Sim",
-  "config": {
-    "layout": {
-      "direction": "row",
-      "first": {
-        "direction": "column",
-        "first": "3D!1",
-        "second": {
-          "direction": "row",
-          "first": "RawMessages!1",
-          "second": "Plot!1"
+  "layout": {
+    "direction": "row",
+    "first": {
+      "direction": "column",
+      "first": "3D!48qqcyl",
+      "second": {
+        "direction": "row",
+        "first": "RawMessages!1",
+        "second": "Plot!1"
+      }
+    },
+    "second": "Plot!2"
+  },
+  "configById": {
+    "3D!48qqcyl": {
+      "cameraState": {
+        "distance": 20,
+        "perspective": true,
+        "phi": 60,
+        "target": [0, 0, 0],
+        "targetOffset": [0, 0, 0],
+        "targetOrientation": [0, 0, 0, 1],
+        "thetaOffset": 45,
+        "fovy": 45,
+        "near": 0.5,
+        "far": 5000
+      },
+      "followMode": "follow-pose",
+      "scene": {},
+      "transforms": {},
+      "topics": {
+        "/scan": { "visible": true },
+        "/tf": { "visible": true },
+        "/robot_description": { "visible": true }
+      },
+      "layers": {
+        "grid": {
+          "visible": true,
+          "drawBehind": false,
+          "label": "Grid",
+          "instanceId": "375c5161-a7c0-42ab-bcb8-d65bac3952a7",
+          "layerId": "foxglove.Grid",
+          "size": 20,
+          "divisions": 20,
+          "lineWidth": 1,
+          "color": "#555555",
+          "position": [0, 0, 0],
+          "rotation": [0, 0, 0]
+        },
+        "urdf": {
+          "visible": true,
+          "label": "URDF",
+          "instanceId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+          "layerId": "foxglove.Urdf",
+          "source": "topic",
+          "topic": "/robot_description"
         }
       },
-      "second": "Plot!2"
+      "publish": {
+        "type": "point",
+        "poseTopic": "/move_base_simple/goal",
+        "pointTopic": "/clicked_point",
+        "poseEstimateTopic": "/initialpose",
+        "poseEstimateXDeviation": 0.5,
+        "poseEstimateYDeviation": 0.5,
+        "poseEstimateThetaDeviation": 0.26179939
+      },
+      "imageMode": {}
     },
-    "configById": {
-      "3D!1": {
-        "followTf": "base_link",
-        "scene": {},
-        "transforms": {}
-      },
-      "RawMessages!1": {
-        "topicPath": "/cmd_vel"
-      },
-      "Plot!1": {
-        "paths": [
-          { "value": "/odom.pose.pose.position.x", "enabled": true }
-        ]
-      },
-      "Plot!2": {
-        "paths": [
-          { "value": "/scan", "enabled": true }
-        ]
-      }
+    "RawMessages!1": {
+      "topicPath": "/cmd_vel"
+    },
+    "Plot!1": {
+      "paths": [
+        {
+          "value": "/odom.pose.pose.position.x",
+          "enabled": true
+        }
+      ]
+    },
+    "Plot!2": {
+      "paths": [
+        {
+          "value": "/scan.ranges[0]",
+          "enabled": true
+        }
+      ]
     }
+  },
+  "globalVariables": {},
+  "userNodes": {},
+  "playbackConfig": {
+    "speed": 1
   }
 }

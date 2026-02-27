@@ -3,6 +3,7 @@ services:
     build: .
     image: foxy-mac-sim:local
     container_name: foxy-sim
+    platform: linux/amd64   # Gazebo + TurtleBot3 sim is amd64-only; use emulation on Apple Silicon
     ports:
       - "9090:9090"   # rosbridge_websocket (Foxglove)
       - "8080:80"     # noVNC (Gazebo desktop in browser)
